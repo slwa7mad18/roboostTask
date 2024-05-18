@@ -23,4 +23,17 @@ export class AuthenticationService {
   GetAccessToken(){
     return localStorage.getItem('AccessToken');
   }
+
+  IsAuthenticated(){
+    if(this.GetAccessToken() != null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  LogOut(){
+   localStorage.removeItem('AccessToken');
+  }
 }

@@ -25,7 +25,10 @@ export class LoginComponent {
     password: new FormControl(null, [Validators.required]),
   });
 
-  constructor(private _authenticationService: AuthenticationService,private _router:Router) {}
+  constructor(
+    private _authenticationService: AuthenticationService,
+    private _router: Router
+  ) {}
 
   get f(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
@@ -42,8 +45,8 @@ export class LoginComponent {
     this._authenticationService.Login(this.loginForm.value).subscribe({
       next: (data) => {
         if (data.Success) {
-          this._authenticationService.SetAccessToken(data.Data)
-
+          this._authenticationService.SetAccessToken(data.Data);
+          this._router.navigateByUrl('/student');
         } else {
           this.errorMessage = data.Message;
         }
