@@ -1,0 +1,197 @@
+<app-header></app-header>
+
+<div class="container p-5 align-items-center">
+  <div class="row">
+    <div class="shadow rounded p-5 w-100">
+      <h3 class="text-primary text-center mb-5 fs-1 fw-bold">Edit Student</h3>
+      <form [formGroup]="editForm" (ngSubmit)="EditFields()">
+        @if (errorMessage!='') {
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">API Error</h4>
+          <p>{{ errorMessage }}</p>
+        </div>
+        }
+
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="ID"
+            placeholder="ID"
+            formControlName="id"
+            readonly
+          />
+          <label for="ID">ID</label>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="nameArabic"
+                placeholder="Name in Arabic"
+              />
+              <label for="nameArabic">Name in Arabic</label>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="nameEnglish"
+                placeholder="Name in English"
+              />
+              <label for="nameEnglish">Name in English</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                placeholder="First Name"
+                formControlName="firstName"
+                [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }"
+              />
+              <label for="firstName">First Name</label>
+              @if (submitted && f['firstName'].errors) {
+              <div class="text-danger">
+                @if (f['firstName'].errors['required']) {
+                <small>First Name is required</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                placeholder="Last Name"
+                formControlName="lastName"
+                [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }"
+              />
+              <label for="lastName">Last Name</label>
+              @if (submitted && f['lastName'].errors) {
+              <div class="text-danger">
+                @if (f['lastName'].errors['required']) {
+                <small>Last Name is required</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="tel"
+                class="form-control"
+                id="mobile"
+                placeholder="Mobile Number"
+                formControlName="mobile"
+                [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }"
+              />
+              <label for="mobile">Mobile Number</label>
+              @if (submitted && f['mobile'].errors) {
+              <div class="text-danger">
+                @if (f['mobile'].errors['required']) {
+                <small>Mobile Number is required</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Email"
+                formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+              />
+              <label for="email">Email</label>
+              @if (submitted && f['email'].errors) {
+              <div class="text-danger">
+                @if (f['email'].errors['required']) {
+                <small>Email is required</small>
+                } @if (f['email'].errors['email']) {
+                <small>Invalid email</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="nationalID"
+                placeholder="National ID"
+                formControlName="nationalID"
+                [ngClass]="{
+                  'is-invalid': submitted && f['nationalID'].errors
+                }"
+              />
+              <label for="nationalID">National ID</label>
+              @if (submitted && f['nationalID'].errors) {
+              <div class="text-danger">
+                @if (f['nationalID'].errors['required']) {
+                <small>National ID is required</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                placeholder="Age"
+                formControlName="age"
+                [ngClass]="{ 'is-invalid': submitted && f['age'].errors }"
+              />
+              <label for="age">Age</label>
+              @if (submitted && f['age'].errors) {
+              <div class="text-danger">
+                @if (f['age'].errors['required']) {
+                <small>Age is required</small>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary my-3 w-50 py-3 fs-5">
+            Edit Student
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
