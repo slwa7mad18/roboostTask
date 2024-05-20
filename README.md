@@ -1,27 +1,36 @@
-# RoboostTask
+Great, that provides a clear picture of your project structure and organization. Now, I'll show you how to document this information effectively.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+Project Structure and Organization
+The project is structured into several key directories and files, each serving a specific purpose:
 
-## Development server
+components/: Contains all the components of the application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+home/: Manages the homepage content.
+header/: Manages the navigation bar, which includes buttons for login, register, and a language selection dropdown.
+login/: Handles the login functionality.
+register/: Manages user registration.
+not-found/: Displays a 404 error page for non-existent routes.
+edit/: Allows modification of student data.
+student/: Lists all students and includes add and remove functionalities.
+directives/: Contains custom directives.
 
-## Code scaffolding
+sortable.directive.ts: A custom directive to make the data table headers sortable.
+guards/: Contains route guards.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+auth.guard.ts: An authentication guard to prevent unauthorized access to certain routes.
+interfaces/: Defines TypeScript interfaces.
 
-## Build
+student.interface.ts: Interface for student data.
+services/: Contains services used throughout the application.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+auth.service.ts: Manages authentication (login, register, logout).
+student.service.ts: Handles CRUD operations for student data.
+student-datatable.service.ts: Manages filtering, sorting, and pagination of the student data table.
+translation.service.ts: Manages localization of the application.
+utils/: Contains utility functions.
 
-## Running unit tests
+validation.util.ts: Utility for validating password and confirm password fields.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Installation instructions
+1. Clone the repo.
+2. npm i
