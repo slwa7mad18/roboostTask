@@ -1,2 +1,253 @@
 <app-header></app-header>
 
+<div class="container my-5">
+  <form>
+    <div class="d-flex">
+      <div class="w-100 pe-3">
+        <div class="form-floating mb-3">
+          <input
+            id="students-table-search"
+            type="text"
+            class="form-control"
+            name="searchTerm"
+            [(ngModel)]="_studentDatatableService.searchTerm"
+            placeholder=""
+          />
+          <label for="students-table-search">Full text search</label>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-lg mt-1" (click)="open(content)">
+          Add
+        </button>
+      </div>
+    </div>
+
+    <table class="table table-striped table-hover table-responsive">
+      <thead>
+        <tr>
+          <th scope="col" sortable="ID" (sort)="onSort($event)">#</th>
+          <th scope="col" sortable="Name" (sort)="onSort($event)">Name</th>
+          <th scope="col" sortable="Mobile" (sort)="onSort($event)">Mobile</th>
+          <th scope="col" sortable="Email" (sort)="onSort($event)">Email</th>
+          <th scope="col" sortable="NationalID" (sort)="onSort($event)">
+            National Id
+          </th>
+          <th scope="col" sortable="Age" (sort)="onSort($event)">Age</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of students$ | async; track student.ID) {
+        <tr>
+          <th scope="row">
+            <ngb-highlight
+              [result]="student.ID.toString()"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </th>
+          <td>
+            <ngb-highlight
+              [result]="student.Name"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="student.Mobile"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="student.Email"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="student.NationalID"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </td>
+          <td>
+            <ngb-highlight
+              [result]="student.Age.toString()"
+              [term]="_studentDatatableService.searchTerm"
+            />
+          </td>
+          <td class="text-nowrap ">
+            <button
+              class="btn btn-warning me-2"
+              [routerLink]="['/edit/' + student.ID]"
+            >
+              Edit
+            </button>
+            <button class="btn btn-danger" (click)="DeleteField(student.ID)">Delete</button>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="7" style="text-align: center">No students found</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!"
+        [(page)]="_studentDatatableService.page"
+        [pageSize]="_studentDatatableService.pageSize"
+      >
+      </ngb-pagination>
+    </div>
+  </form>
+</div>
+
+<!-- Add New Student -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Student</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addForm" (ngSubmit)="AddFields()">
+      @if (errorMessage!='') {
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">API Error</h4>
+        <p>{{ errorMessage }}</p>
+      </div>
+      }
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }"
+        />
+        <label for="firstName">First Name</label>
+        @if (submitted && f['firstName'].errors) {
+        <div class="text-danger">
+          @if (f['firstName'].errors['required']) {
+          <small>First Name is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+          [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }"
+        />
+        <label for="lastName">Last Name</label>
+        @if (submitted && f['lastName'].errors) {
+        <div class="text-danger">
+          @if (f['lastName'].errors['required']) {
+          <small>Last Name is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="tel"
+          class="form-control"
+          id="mobile"
+          placeholder="Mobile Number"
+          formControlName="mobile"
+          [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }"
+        />
+        <label for="mobile">Mobile Number</label>
+        @if (submitted && f['mobile'].errors) {
+        <div class="text-danger">
+          @if (f['mobile'].errors['required']) {
+          <small>Mobile Number is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+        />
+        <label for="email">Email</label>
+        @if (submitted && f['email'].errors) {
+        <div class="text-danger">
+          @if (f['email'].errors['required']) {
+          <small>Email is required</small>
+          } @if (f['email'].errors['email']) {
+          <small>Invalid email</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="nationalID"
+          placeholder="National ID"
+          formControlName="nationalID"
+          [ngClass]="{
+            'is-invalid': submitted && f['nationalID'].errors
+          }"
+        />
+        <label for="nationalID">National ID</label>
+        @if (submitted && f['nationalID'].errors) {
+        <div class="text-danger">
+          @if (f['nationalID'].errors['required']) {
+          <small>National ID is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          placeholder="Age"
+          formControlName="age"
+          [ngClass]="{ 'is-invalid': submitted && f['age'].errors }"
+        />
+        <label for="age">Age</label>
+        @if (submitted && f['age'].errors) {
+        <div class="text-danger">
+          @if (f['age'].errors['required']) {
+          <small>Age is required</small>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary my-3 w-50 py-3 fs-5">
+          Add Student
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

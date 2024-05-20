@@ -14,7 +14,7 @@ import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,HeaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
 })
@@ -23,6 +23,8 @@ export class EditComponent implements OnInit {
   submitted: boolean = false;
   errorMessage: string = '';
   editForm: FormGroup = new FormGroup({
+    nameArabic: new FormControl(null,[Validators.required]),
+    nameEnglish: new FormControl(null,[Validators.required]),
     id: new FormControl(null),
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),
@@ -73,8 +75,10 @@ export class EditComponent implements OnInit {
       return;
     }
 
+
     this._studentService.Edit(this.editForm.value).subscribe({
       next: (res) => {
+        console.log(res);
         this._router.navigateByUrl('/student');
       },
     });

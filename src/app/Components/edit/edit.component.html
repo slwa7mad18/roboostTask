@@ -32,8 +32,18 @@
                 class="form-control"
                 id="nameArabic"
                 placeholder="Name in Arabic"
+                formControlName="nameArabic"
+                [ngClass]="{ 'is-invalid': submitted && f['nameArabic'].errors }"
+             
               />
               <label for="nameArabic">Name in Arabic</label>
+              @if (submitted && f['nameArabic'].errors) {
+                <div class="text-danger">
+                  @if (f['nameArabic'].errors['required']) {
+                  <small>Name in Arabic is required</small>
+                  }
+                </div>
+                }
             </div>
           </div>
 
@@ -43,9 +53,19 @@
                 type="text"
                 class="form-control"
                 id="nameEnglish"
+                formControlName="nameEnglish"
                 placeholder="Name in English"
+                [ngClass]="{ 'is-invalid': submitted && f['nameEnglish'].errors }"
+             
               />
               <label for="nameEnglish">Name in English</label>
+              @if (submitted && f['nameEnglish'].errors) {
+                <div class="text-danger">
+                  @if (f['nameEnglish'].errors['required']) {
+                  <small>Name in English is required</small>
+                  }
+                </div>
+                }
             </div>
           </div>
         </div>
