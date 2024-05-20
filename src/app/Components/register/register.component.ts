@@ -9,13 +9,14 @@ import {
 } from '@angular/forms';
 import Validation from '../../Utils/Validation';
 import { AuthenticationService } from '../../Services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule,TranslocoModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })

@@ -1,16 +1,23 @@
 <app-header></app-header>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12 mt-5 text-center ">
-      <h1 class="text-primary ">Welcome To Student Management System</h1>
-      <h4>Here you can Add, Edit and Delete students!</h4>
-    </div>
+<ng-container *transloco="let t">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-5 text-center">
+        <h1 class="text-primary">{{ t("home.title") }}</h1>
+        <h4>{{ t("home.paragraph") }}</h4>
+      </div>
 
-    <div class="col-12 text-center ">
-    <img src="assets\images\Students.gif" class="img-fluid " alt="Student home" />
+      <div class="col-12 text-center">
+        @defer () {
+        <img
+          src="assets\images\Students.gif"
+          class="img-fluid"
+          alt="Student home"
+        />
+        }
+      </div>
+      
     </div>
   </div>
-</div>
-
-
+</ng-container>

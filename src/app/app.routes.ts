@@ -5,6 +5,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { StudentComponent } from './Components/student/student.component';
 import { authenticationGuard } from './Gurds/authentication.guard';
 import { EditComponent } from './Components/edit/edit.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,5 +21,9 @@ export const routes: Routes = [
     path: 'edit/:id',
     component: EditComponent,
     canActivate: [authenticationGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   },
 ];

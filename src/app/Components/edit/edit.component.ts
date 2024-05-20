@@ -8,13 +8,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HeaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent,TranslocoModule,RouterLink],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
 })
@@ -58,10 +59,6 @@ export class EditComponent implements OnInit {
     });
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.editForm.controls;
-  }
-
   EditFields() {
     this.errorMessage = '';
     this.submitted = true;
@@ -82,5 +79,9 @@ export class EditComponent implements OnInit {
         this._router.navigateByUrl('/student');
       },
     });
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.editForm.controls;
   }
 }

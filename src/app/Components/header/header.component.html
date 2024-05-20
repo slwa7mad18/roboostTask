@@ -1,64 +1,85 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" [routerLink]="['/home']"
-      ><span class="text-primary">Student</span> Management</a
-    >
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        @if (isLoggedIn) {
-        <li class="nav-item">
-          <a class="nav-link "
-            aria-current="page"
-            [routerLink]="['/student']"
-            routerLinkActive="text-primary"
-            >Student</a
-          >
-        </li>
-        }
-      </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Language</option>
-            <option value="1">En</option>
-            <option value="2">Ar</option>
-          </select>
-        </li>
-        @if (!isLoggedIn) {
-        <li class="nav-item">
-          <a
-            class="btn btn-primary mx-2"
-            aria-current="page"
-            [routerLink]="['/login']"
-            routerLinkActive="text-primary"
-            >Login</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="btn btn-secondary"
-            [routerLink]="['/register']"
-            routerLinkActive="text-primary "
-            >Register</a
-          >
-        </li>
-        } @if (isLoggedIn) {
-        <li class="nav-item ms-2">
-          <button class="btn btn-secondary" (click)="LogOut()">LogOut</button>
-        </li>
-        }
-      </ul>
+<ng-container *transloco="let t">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-primary" [routerLink]="['/home']"
+        >{{ t("header.logo") }}
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="navbarCollapsed = !navbarCollapsed"
+        [attr.aria-expanded]="!navbarCollapsed"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        [ngbCollapse]="navbarCollapsed"
+      >
+        <ul class="navbar-nav">
+          @if (isLoggedIn) {
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              [routerLink]="['/student']"
+              routerLinkActive="text-primary"
+              >{{ t("header.students") }}</a
+            >
+          </li>
+          }
+        </ul>
+
+        <ul class="navbar-nav mt-3 mt-lg-0  ms-auto">
+          <li class="nav-item">
+            <select
+              class="form-select"
+              [(ngModel)]="selectedLanguage"
+              (change)="ChangeLanguage()"
+            >
+              <option value="en-US">En</option>
+              <option value="ar-EG">Ar</option>
+            </select>
+          </li>
+
+          @if (!isLoggedIn) {
+            
+          <li class="nav-item">
+            <a
+              class="btn btn-primary mx-lg-2 my-lg-0  my-2"
+              aria-current="page"
+              [routerLink]="['/login']"
+              routerLinkActive="text-primary"
+              >{{ t("header.login") }}</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="btn btn-secondary"
+              [routerLink]="['/register']"
+              routerLinkActive="text-primary "
+              >{{ t("header.register") }}</a
+            >
+          </li>
+
+          } @if (isLoggedIn) {
+          <li class="nav-item ms-2 my-lg-0  my-2">
+            <button class="btn btn-secondary" (click)="LogOut()">
+              {{ t("header.logout") }}
+            </button>
+          </li>
+          }
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</ng-container>

@@ -1,1 +1,91 @@
-{}
+{
+  "header": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "logo": "Student Management System",
+    "students": "Students"
+  },
+  "goToRegister": "Do not have account",
+  "goToLogin": "Already have account",
+
+  "home": {
+    "title": "Welcome To Student Management System",
+    "paragraph": "Here you can Add, Edit and Delete students!"
+  },
+  "student": {
+    "search": "Full text search",
+    "table": {
+      "name": "Name",
+      "mobile": "Mobile",
+      "email": "Email",
+      "nationalId": "National Id",
+      "age": "Age",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "empty": "No students found"
+    }
+  },
+  "addStudent": "Add Student",
+  "editStudent": "Edit Student",
+  "goToStudent": "Back to student list",
+  "deleteStudent": {
+    "warnning": {
+      "title": "Are you sure?",
+      "warnning": "You will not be able to recover this student's data",
+      "acceptDelete": "Yes, delete it!",
+      "rejectDelete": "No, keep it!"
+    },
+    "deleted": {
+      "title": "Deleted!",
+      "description": "Student has been deleted.",
+      "confirm": "Ok"
+    },
+    "canceled": {
+      "title": "Cancelled",
+      "description": "Student has not been deleted.",
+      "confirm": "Ok"
+    }
+  },
+  "notFound": {
+    "title": "Look like you're lost",
+    "paragraph": "the page you are looking for not avaible!",
+    "goToHome": "Go to Home"
+  },
+  "form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "name": "Name",
+    "mobile": "Mobile Number",
+    "email": "Email",
+    "nationalId": "National ID",
+    "age": "Age",
+    "arabicName": "Name In Arabic",
+    "englishName": "Name In English",
+    "Id": "ID",
+    "userName": "User Name",
+    "password": "Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "validation": {
+    "api": "API Error",
+    "requiredArabicName": "Name in Arabic is required",
+    "requiredEnglishName": "Name in English is required",
+    "requiredFirstName": "First Name is required",
+    "requiredLastName": "Last Name is required",
+    "requiredName": "Name is required",
+    "minLingth": "Name must be at least 3 characters",
+    "maxLingth": "Name must not exceed 20 characters",
+    "requiredMobile": "Mobile Number is required",
+    "requiredEmail": "Email is required",
+    "emailType": "Invalid email",
+    "requiredUserName": "User Name is required",
+    "userNameType": "Invalid User Name",
+    "requiredNationalId": "National ID is required",
+    "requiredAge": "Age is required",
+    "requiredPassword": "Password is required",
+    "requiredConfirmPassword": "Confirm Password is required",
+    "matchConfirmPassword": "Confirm Password does not match"
+  }
+}

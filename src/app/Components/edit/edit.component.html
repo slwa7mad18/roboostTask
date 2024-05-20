@@ -1,13 +1,16 @@
 <app-header></app-header>
 
+<ng-container *transloco="let t">
 <div class="container p-5 align-items-center">
   <div class="row">
     <div class="shadow rounded p-5 w-100">
-      <h3 class="text-primary text-center mb-5 fs-1 fw-bold">Edit Student</h3>
+      <h3 class="text-primary text-center mb-5 fs-1 fw-bold">{{t('editStudent')}}</h3>
+      
       <form [formGroup]="editForm" (ngSubmit)="EditFields()">
+        
         @if (errorMessage!='') {
         <div class="alert alert-danger" role="alert">
-          <h4 class="alert-heading">API Error</h4>
+          <h4 class="alert-heading">{{t('validation.api')}}</h4>
           <p>{{ errorMessage }}</p>
         </div>
         }
@@ -21,7 +24,7 @@
             formControlName="id"
             readonly
           />
-          <label for="ID">ID</label>
+          <label for="ID">{{t('form.Id')}}</label>
         </div>
 
         <div class="row">
@@ -36,11 +39,11 @@
                 [ngClass]="{ 'is-invalid': submitted && f['nameArabic'].errors }"
              
               />
-              <label for="nameArabic">Name in Arabic</label>
+              <label for="nameArabic">{{t('form.arabicName')}}</label>
               @if (submitted && f['nameArabic'].errors) {
                 <div class="text-danger">
                   @if (f['nameArabic'].errors['required']) {
-                  <small>Name in Arabic is required</small>
+                  <small>{{t('validation.requiredArabicName')}}</small>
                   }
                 </div>
                 }
@@ -58,11 +61,11 @@
                 [ngClass]="{ 'is-invalid': submitted && f['nameEnglish'].errors }"
              
               />
-              <label for="nameEnglish">Name in English</label>
+              <label for="nameEnglish">{{t('form.englishName')}}</label>
               @if (submitted && f['nameEnglish'].errors) {
                 <div class="text-danger">
                   @if (f['nameEnglish'].errors['required']) {
-                  <small>Name in English is required</small>
+                  <small>{{t('validation.requiredEnglishName')}}</small>
                   }
                 </div>
                 }
@@ -81,11 +84,11 @@
                 formControlName="firstName"
                 [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }"
               />
-              <label for="firstName">First Name</label>
+              <label for="firstName">{{t('form.firstName')}}</label>
               @if (submitted && f['firstName'].errors) {
               <div class="text-danger">
                 @if (f['firstName'].errors['required']) {
-                <small>First Name is required</small>
+                <small>{{t('validation.requiredFirstName')}}</small>
                 }
               </div>
               }
@@ -102,11 +105,11 @@
                 formControlName="lastName"
                 [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }"
               />
-              <label for="lastName">Last Name</label>
+              <label for="lastName">{{t('form.lastName')}}</label>
               @if (submitted && f['lastName'].errors) {
               <div class="text-danger">
                 @if (f['lastName'].errors['required']) {
-                <small>Last Name is required</small>
+                <small>{{t('validation.requiredLastName')}}</small>
                 }
               </div>
               }
@@ -125,11 +128,11 @@
                 formControlName="mobile"
                 [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }"
               />
-              <label for="mobile">Mobile Number</label>
+              <label for="mobile">{{t('form.mobile')}}</label>
               @if (submitted && f['mobile'].errors) {
               <div class="text-danger">
                 @if (f['mobile'].errors['required']) {
-                <small>Mobile Number is required</small>
+                <small>{{t('validation.requiredMobile')}}</small>
                 }
               </div>
               }
@@ -146,13 +149,13 @@
                 formControlName="email"
                 [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
               />
-              <label for="email">Email</label>
+              <label for="email">{{t('form.email')}}</label>
               @if (submitted && f['email'].errors) {
               <div class="text-danger">
                 @if (f['email'].errors['required']) {
-                <small>Email is required</small>
+                <small>{{t('validation.requiredEmail')}}</small>
                 } @if (f['email'].errors['email']) {
-                <small>Invalid email</small>
+                <small>{{t('validation.emailType')}}</small>
                 }
               </div>
               }
@@ -173,11 +176,11 @@
                   'is-invalid': submitted && f['nationalID'].errors
                 }"
               />
-              <label for="nationalID">National ID</label>
+              <label for="nationalID">{{t('form.nationalId')}}</label>
               @if (submitted && f['nationalID'].errors) {
               <div class="text-danger">
                 @if (f['nationalID'].errors['required']) {
-                <small>National ID is required</small>
+                <small>{{t('validation.requiredNationalId')}}</small>
                 }
               </div>
               }
@@ -194,11 +197,11 @@
                 formControlName="age"
                 [ngClass]="{ 'is-invalid': submitted && f['age'].errors }"
               />
-              <label for="age">Age</label>
+              <label for="age">{{t('form.age')}}</label>
               @if (submitted && f['age'].errors) {
               <div class="text-danger">
                 @if (f['age'].errors['required']) {
-                <small>Age is required</small>
+                <small>{{t('validation.requiredAge')}}</small>
                 }
               </div>
               }
@@ -208,10 +211,16 @@
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary my-3 w-50 py-3 fs-5">
-            Edit Student
+            {{t('editStudent')}}
           </button>
         </div>
+
+        <div class="text-center " >
+          <a [routerLink]="['/student']" routerLinkActive="router-link-active" >{{t('goToStudent')}}</a>
+        </div>
+        
       </form>
     </div>
   </div>
 </div>
+</ng-container>

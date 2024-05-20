@@ -31,6 +31,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import Swal from 'sweetalert2';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslationService } from '../../Services/translation.service';
 
 @Component({
   selector: 'app-student',
@@ -47,8 +49,14 @@ import Swal from 'sweetalert2';
     RouterLinkActive,
     CommonModule,
     ReactiveFormsModule,
+    TranslocoModule,
   ],
-  providers: [StudentDatatableService, DecimalPipe],
+  providers: [
+    StudentDatatableService,
+    DecimalPipe,
+    TranslocoService,
+    TranslationService,
+  ],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css',
 })
@@ -75,7 +83,9 @@ export class StudentComponent implements OnInit {
 
   constructor(
     private _studentService: StudentService,
-    public _studentDatatableService: StudentDatatableService
+    public _studentDatatableService: StudentDatatableService,
+    private _translocoService: TranslocoService,
+    private _translationService: TranslationService
   ) {
     this.students$ = this._studentDatatableService.students$;
     this.total$ = this._studentDatatableService.total$;
@@ -133,11 +143,14 @@ export class StudentComponent implements OnInit {
   }
 
   open(content: TemplateRef<any>) {
+    this.errorMessage = '';
+    this.submitted = false;
     this.addForm.reset();
     this.modal = this.modalService.open(content);
   }
 
   // delete student
+  private deleteStudentPopupTranslations: any;
   DeleteField(id: any) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -146,29 +159,69 @@ export class StudentComponent implements OnInit {
       },
       buttonsStyling: false,
     });
-    swalWithBootstrapButtons
-      .fire({
-        title: 'Are you sure?',
-        text: `You will not be able to recover this student's data!`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        confirmButtonColor: '#d33',
-        cancelButtonText: 'No, keep it',
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          this._studentService.Delete(id).subscribe({
-            next: () => {
-              this.LoadData();
-              Swal.fire('Deleted!', 'Student has been deleted.', 'success');
-            },
-          });
-        }
 
-        if (result.isDismissed) {
-          Swal.fire('Cancelled', 'Student has not been deleted.', 'error');
-        }
+    this._translocoService
+      .selectTranslation(this._translationService.GetLanguage())
+      .subscribe({
+        next: (value) => {
+          this.deleteStudentPopupTranslations = value;
+
+          swalWithBootstrapButtons
+            .fire({
+              title:
+                this.deleteStudentPopupTranslations[
+                  'deleteStudent.warnning.title'
+                ],
+              text: this.deleteStudentPopupTranslations[
+                'deleteStudent.warnning.warnning'
+              ],
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText:
+                this.deleteStudentPopupTranslations[
+                  'deleteStudent.warnning.acceptDelete'
+                ],
+              confirmButtonColor: '#d33',
+              cancelButtonText:
+                this.deleteStudentPopupTranslations[
+                  'deleteStudent.warnning.rejectDelete'
+                ],
+            })
+            .then((result) => {
+              if (result.isConfirmed) {
+                this._studentService.Delete(id).subscribe({
+                  next: () => {
+                    this.LoadData();
+                    Swal.fire(
+                      this.deleteStudentPopupTranslations[
+                        'deleteStudent.deleted.title'
+                      ],
+                      this.deleteStudentPopupTranslations[
+                        'deleteStudent.deleted.description'
+                      ],
+                      this.deleteStudentPopupTranslations[
+                        'deleteStudent.deleted.confirm'
+                      ]
+                    );
+                  },
+                });
+              }
+
+              if (result.isDismissed) {
+                Swal.fire(
+                  this.deleteStudentPopupTranslations[
+                    'deleteStudent.canceled.title'
+                  ],
+                  this.deleteStudentPopupTranslations[
+                    'deleteStudent.canceled.description'
+                  ],
+                  this.deleteStudentPopupTranslations[
+                    'deleteStudent.canceled.confirm'
+                  ]
+                );
+              }
+            });
+        },
       });
   }
 }

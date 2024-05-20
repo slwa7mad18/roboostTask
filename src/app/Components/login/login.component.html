@@ -1,69 +1,91 @@
-<div class="container">
-  <div class="row vh-100">
-    <div class="col-12 col-lg-6 p-5 d-flex align-items-center">
-      <img
-        src="assets/images/login.gif"
-        class="img-fluid"
-        alt="Register Image"
-      />
-    </div>
-    
-    <div class="col-12 col-lg-6 p-5 d-flex align-items-center">
-      <div class="shadow rounded p-5 w-100">
-        <h3 class="text-primary text-center mb-5 fs-1 fw-bold">Log in</h3>
-        <form [formGroup]="loginForm" (ngSubmit)="HandleLogin()">
-          @if (errorMessage!='') {
-          <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">API Error</h4>
-            <p>{{ errorMessage }}</p>
-          </div>
-          }
+<ng-container *transloco="let t">
+  <div class="container">
+    <div class="row vh-100">
+      <div class="col-12 col-xl-6 p-5 align-items-center d-none d-xl-flex ">
+        @defer () {
+        <img
+          src="assets/images/login.gif"
+          class="img-fluid"
+          alt="Register Image"
+        />
+        }
+      </div>
 
-          <div class="form-floating mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="userName"
-              placeholder="User Name"
-              formControlName="userName"
-              [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }"
-            />
-            <label for="userName">User Name</label>
-            @if (submitted && f['userName'].errors) {
-            <div class="text-danger">
-              @if (f['userName'].errors['required']) {
-              <small>User Name is required</small>
-              } @if (f['userName'].errors['email']) {
-              <small>User Name is invalid</small>
-              }
+      <div class="col-12 col-xl-6 p-5 d-flex align-items-center">
+        <div class="shadow rounded p-5 w-100">
+          <h3 class="text-primary text-center mb-5 fs-1 fw-bold">
+            {{ t("header.login") }}
+          </h3>
+
+          <form [formGroup]="loginForm" (ngSubmit)="HandleLogin()">
+            @if (errorMessage!='') {
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">{{ t("validation.api") }}</h4>
+              <p>{{ errorMessage }}</p>
             </div>
             }
-          </div>
 
-          <div class="form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="Password"
-              placeholder="Password"
-              formControlName="password"
-              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
-            />
-            <label for="Password">Password</label>
-            @if (submitted && f['password'].errors) {
-            <div class="text-danger">
-              @if (f['password'].errors['required']) {
-              <small>Password is required</small>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="userName"
+                placeholder="User Name"
+                formControlName="userName"
+                [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }"
+              />
+              <label for="userName">{{ t("form.userName") }}</label>
+              @if (submitted && f['userName'].errors) {
+              <div class="text-danger">
+                @if (f['userName'].errors['required']) {
+                <small>{{ t("validation.requiredEmail") }}</small>
+                } @if (f['userName'].errors['email']) {
+                <small>{{ t("validation.emailType") }}</small>
+                }
+              </div>
               }
             </div>
-            }
-          </div>
 
-          <button type="submit" class="btn btn-primary my-3 w-100 py-3 fs-5">
-            Log in
-          </button>
-        </form>
+            <div class="form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="Password"
+                placeholder="Password"
+                formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+              />
+              <label for="Password">{{ t("form.password") }}</label>
+              @if (submitted && f['password'].errors) {
+              <div class="text-danger">
+                @if (f['password'].errors['required']) {
+                <small>{{ t("validation.requiredPassword") }}</small>
+                }
+              </div>
+              }
+            </div>
+
+            <button type="submit" class="btn btn-primary my-3 w-100 py-3 fs-5">
+              {{ t("header.login") }}
+            </button>
+
+            <div class="text-center">
+              <a
+                [routerLink]="['/register']"
+                routerLinkActive="router-link-active"
+                >{{ t("goToRegister") }}</a
+              >
+              <span class="mx-3">|</span>
+              <a
+              [routerLink]="['/home']"
+              routerLinkActive="router-link-active"
+              >{{ t("notFound.goToHome") }}</a
+            >
+            </div>
+            
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>

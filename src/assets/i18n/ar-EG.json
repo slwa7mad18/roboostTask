@@ -1,1 +1,90 @@
-{}
+{
+  "header": {
+    "login": "تسجيل الدخول",
+    "logo": "نظام ادارة الطلاب",
+    "logout": "تسجيل الخروج",
+    "register": "الانضمام الينا",
+    "students": "الطلاب"
+  },
+  "goToRegister": "ليس لديك حساب",
+  "goToLogin": "لديك حساب بالفعل",
+  "home": {
+    "title": "مرحباً بك في نظام ادارة الطلاب",
+    "paragraph": "هنا يمكنك إضافة وتحرير وحذف الطلاب!"
+  },
+  "student": {
+    "search": "البحث عن النص الكامل",
+    "table": {
+      "name": "الاسم",
+      "mobile": "رقم التيليفون",
+      "email": "البريد الألكتروني",
+      "nationalId": "الرقم القومي",
+      "age": "العمر",
+      "add": "اضف",
+      "edit": "تحرير",
+      "delete": "حذف",
+      "empty": "لم يتم العثور على طلاب"
+    }
+  },
+  "addStudent": "اضف طالب جديد",
+  "editStudent": "تحرير الطالب",
+  "goToStudent": "العوده الي قائمة الطلاب",
+  "deleteStudent": {
+    "warnning": {
+      "title": "هل انت متاكد؟",
+      "warnning": "لن تتمكن من استعادة بيانات هذا الطالب",
+      "acceptDelete": "نعم ، احذفه!",
+      "rejectDelete": "لا ، احتفظ بها!"
+    },
+    "deleted": {
+      "title": "تم الحذف!",
+      "description": "تم حذف الطالب.",
+      "confirm": "حسناً"
+    },
+    "canceled": {
+      "title": "تم الغاء الحذف",
+      "description": "لم يتم حذف الطالب",
+      "confirm": "حسناً"
+    }
+  },
+  "notFound": {
+    "title": "تبدو وكأنك ضائع",
+    "paragraph": "الصفحة التي تبحث عنها غير متوفرة!",
+    "goToHome": "الذهاب الي الصفحه الرئيسية"
+  },
+  "form": {
+    "firstName": "الاسم الاول",
+    "lastName": "الاسم الاخير",
+    "name": "الاسم",
+    "mobile": "رقم التيليفون",
+    "email": "البريد الألكتروني",
+    "nationalId": "الرقم القومي",
+    "age": "العمر",
+    "arabicName": "الاسم باللغه العربيه",
+    "englishName": "الاسم باللغه الانجليزيه",
+    "Id": "الرقم التعريفي",
+    "userName": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "confirmPassword": "تاكيد كلمة المرور"
+  },
+  "validation": {
+    "api": "حدث خطأ",
+    "requiredArabicName": "الاسم باللغه العربيه مطلوب",
+    "requiredEnglishName": "الاسم باللغه الانجليزيه مطلوب",
+    "requiredFirstName": "الاسم الاول مطلوب",
+    "requiredLastName": "الاسم الاخير مطلوب",
+    "requiredName": "الاسم مطلوب",
+    "minLingth": "الاسم لا يجب ان يكون اقل من 3 حروف",
+    "maxLingth": "الاسم يجب الا يتعدي 20 حرفاً",
+    "requiredMobile": "رقم التيليفون مطلوب",
+    "requiredEmail": "البريد الالكتروني مطلوب",
+    "emailType": "البريد الالكتروني غير صحيح",
+    "requiredUserName": "اسم المستخدم مطلوب",
+    "userNameType": "اسم المستخدم غير صحيح",
+    "requiredNationalId": "الرقم القومي مطلوب",
+    "requiredAge": "العمر مطلوب",
+    "requiredPassword": "كلمة المرور مطلوبه",
+    "requiredConfirmPassword": "تأكيد كلمة المرور مطلوب",
+    "matchConfirmPassword": "كلمة المرور غير متطابقه"
+  }
+}

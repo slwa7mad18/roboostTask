@@ -8,12 +8,13 @@ import {
 } from '@angular/forms';
 import { AuthenticationService } from '../../Services/authentication.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,TranslocoModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
