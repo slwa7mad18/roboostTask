@@ -1,6 +1,6 @@
-Great, that provides a clear picture of your project structure and organization. Now, I'll show you how to document this information effectively.
 
-Project Structure and Organization
+
+# Project Structure and Organization
 The project is structured into several key directories and files, each serving a specific purpose:
 
 components/: Contains all the components of the application.
@@ -31,6 +31,6 @@ utils/: Contains utility functions.
 
 validation.util.ts: Utility for validating password and confirm password fields.
 
-Installation instructions
+# Installation instructions
 1. Clone the repo.
 2. npm i
